@@ -114,24 +114,27 @@ printf "\n"
 #go run ./build/*.go test #Or don't bother :)
 printf "\n"
 
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "https://github.com/filecoin-project/go-filecoin/wiki/Getting-Started"
 printf "\n"
-go-filecoin daemon launch
-printf "\n"
-
-read -n 1 -s -r -p "Press any key to continue"
-printf "\n"
-# https://github.com/filecoin-project/go-filecoin/wiki/Getting-Started
 printf "\n"
 
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "go-filecoin init --devnet-user --genesisfile=http://user.kittyhawk.wtf:8020/genesis.car"
 printf "\n"
 go-filecoin init --devnet-user --genesisfile=http://user.kittyhawk.wtf:8020/genesis.car
 printf "\n"
 
-read -n 1 -s -r -p "screen -S filecoind -dm `go-filecoin daemon`"
+
+
+read -n 1 -s -r -p "screen -S filecoin -dm 'go-filecoin daemon' #This will launch a filecoin daemon in the background and wait a minute for it to start."
 printf "\n"
-screen -S filecoind -dm `go-filecoin daemon`
+printf "\n"
+printf "\n"
+read -n 1 -s -r -p "This step appears to be broken. Check that the server is running, or pop into a new window and start it before you continue!"
+printf "\n"
+printf "\n"
+printf "\n"
+screen -S filecoin -dm 'go-filecoin daemon'
+for i in {60..1..1};do echo -n "$i.." && sleep 1; done
 printf "\n"
 
 read -n 1 -s -r -p "go-filecoin swarm peers # lists addresses of peers to which you're connected"
@@ -139,38 +142,37 @@ printf "\n"
 go-filecoin swarm peers 
 printf "\n"
 
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "go-filecoin config heartbeat.nickname \"Huber\" #This will configure your filecoin server to be called Huber. You can change that."
 printf "\n"
-go-filecoin config heartbeat.nickname "Huber" #In quotes to select a name
+go-filecoin config heartbeat.nickname "Huber"
 printf "\n"
 
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "go-filecoin config heartbeat.nickname #shows your current name"
 printf "\n"
 go-filecoin config heartbeat.nickname #shows your current name
 printf "\n"
 
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "go-filecoin config heartbeat.beatTarget \"/dns4/stats-infra.kittyhawk.wtf/tcp/8080/ipfs/QmUWmZnpZb6xFryNDeNU7KcJ1Af5oHy7fB9npU67sseEjR\" #Share data with network"
 printf "\n"
 go-filecoin config heartbeat.beatTarget "/dns4/stats-infra.kittyhawk.wtf/tcp/8080/ipfs/QmUWmZnpZb6xFryNDeNU7KcJ1Af5oHy7fB9npU67sseEjR" #Share data with network
 printf "\n"
 
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "/usr/bin/firefox --new-window https://stats.kittyhawk.wtf/ Open the stats page in firefox."
 printf "\n"
 /usr/bin/firefox --new-window https://stats.kittyhawk.wtf/ 
 printf "\n"
 
-
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "# https://github.com/filecoin-project/go-filecoin/wiki/Getting-Started#get-fil-from-the-filecoin-faucet"
 printf "\n"
 # https://github.com/filecoin-project/go-filecoin/wiki/Getting-Started#get-fil-from-the-filecoin-faucet
 printf "\n"
 
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "export WALLET_ADDR=`go-filecoin wallet addrs ls`    # fetch your wallet address into a handy variable"
 printf "\n"
 export WALLET_ADDR=`go-filecoin wallet addrs ls`    # fetch your wallet address into a handy variable
 printf "\n"
 
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p "MESSAGE_CID=`curl -X POST -F \"target=${WALLET_ADDR}\" \"http://user.kittyhawk.wtf:9797/tap\" | cut -d\" \" -f4`"
 printf "\n"
 MESSAGE_CID=`curl -X POST -F "target=${WALLET_ADDR}" "http://user.kittyhawk.wtf:9797/tap" | cut -d" " -f4`
 printf "\n"
