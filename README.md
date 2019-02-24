@@ -12,4 +12,3 @@ There isn't anything special here, just my attempt to understand filecoin and ge
 5. chmod +x install_filecoin.sh
 ...
 
-testedit
